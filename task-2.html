@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  
+  const words = ['кот', 'собака', 'кошка',];
+
+  const Game = {
+    word: words[Math.floor(Math.random() * words.length)],
+    answerWord: [],
+    quantityLetter: 0,
+  };
+
+  Game.quantityLetter = Game.word.length;
+  
+  function getAnswerWord() {
+    for (let i = 0; i < Game.word.length; i++) {
+      Game.answerWord[i] = "_";
+    };
+  };
+
+  getAnswerWord();
+
+  function getAnswer() {
+    return alert(Game.answerWord.join(" "));
+  };
+
+  while (Game.quantityLetter > 0) {
+    getAnswer();
+    
+    let letter = prompt('Напишите букву или Нажмите отмена для выхода из программы');
+    letter = letter .toLowerCase();
+    if (letter === null) {
+      break;
+    } else if (letter.length !== 1) {
+      alert('Только одна буква');
+    } else {
+
+      for (let j = 0; j < Game.word.length; j ++) {
+        const letterEntered = Game.answerWord[j] === letter;
+
+        if (letterEntered) {
+            alert('Буква уже есть');
+            break;
+        };
+
+        if (Game.word[j] === letter) {
+          Game.answerWord[j] = letter;
+          Game.quantityLetter--;
+        };
+      };
+    };
+  };
+
+  function winAnswer() {
+    return alert(`Было загадано слово - ${Game.word}`);
+  };
+
+  getAnswer();
+  winAnswer();
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <script>
+
+    const gameChoise = ['камень', 'ножницы', 'бумага'];
+
+    let scoreUser = 0;
+
+    let scoreComp = 0;
+
+    function getWinComp() {
+      return alert(`Выйграл компьютер!` + '\n' +
+                `Счет:` + '\n' +
+                `Очки компьютера - ${scoreComp}` + '\n' +
+                `Очки пользователя - ${scoreUser}`);
+    };
+
+    function getWinUser() {
+      return alert(`Выйграл пользователь!` + '\n' +
+                `Счет:` + '\n' +
+                `Очки компьютера - ${scoreComp}` + '\n' +
+                `Очки пользователя - ${scoreUser}`);
+    };
+
+    function getDraw() {
+      return alert(`Ничья`);
+    };
+
+    function getFinnalyScore() {
+      return alert(`Очков у пользователя: ${scoreUser}` + '\n' +
+                    `Очков у компьютера: ${scoreComp}`);
+    };
+
+    while(true) {
+      const compChoise = gameChoise[Math.floor(Math.random() * gameChoise.length)];
+
+      let userChoise = prompt('Выберете свой вариант: 1.камень, 2.ножницы, 3.бумага');
+
+      if (userChoise === null) {
+        getFinnalyScore();
+        if (scoreComp < scoreUser) {
+          alert('Победитель вы');
+        } else if (scoreComp === scoreUser) {
+          getDraw();
+        } else {
+          alert('Победитель компьютер');
+        }
+        break;
+      };
+
+      userChoise = userChoise.toLowerCase();
+
+      if (userChoise ===  compChoise) {
+        getDraw();
+        continue;
+      };
+
+      if (compChoise === 'камень' && userChoise === 'ножницы') {
+        scoreComp++;
+        getWinComp();
+      } else if (compChoise === 'камень' && userChoise === 'бумага') {
+        scoreUser++;
+        getWinUser();
+      } else if (compChoise === 'ножницы' && userChoise === 'камень') {
+        scoreUser++;
+        getWinUser();
+      } else if (compChoise === 'ножницы' && userChoise === 'бумага') {
+        scoreComp++;
+        getWinComp();
+      } else if (compChoise === 'бумага' && userChoise === 'камень') {
+        scoreComp++;
+        getWinComp();
+      } else if (compChoise === 'бумага' && userChoise === 'ножницы') {
+        scoreUser++;
+        getWinUser();
+      } else {
+        alert('Ошибка!!!');
+        continue;
+      };
+
+    };
+        
+  </script>
+
+</body>
+</html>
